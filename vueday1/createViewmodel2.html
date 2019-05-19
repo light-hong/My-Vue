@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div">
+        
+    </div>
+    <!-- <template id="tep">
+        <h1>也可以用template标签创建</h1>
+    </template> -->
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        (function () {
+            new Vue({
+                el: '#div',
+                template: `<h1> 创建内部视图 只能有一个根标签</h1>`
+                //template:'#tep'
+            })
+        })()
+    </script>
+</body>
+
+</html>
