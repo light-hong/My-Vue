@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <style>
+       /*  [v-cloak] {
+            display: none;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id='app'>
+        <!-- 使用 v-cloak 添加样式 能够解决 插值表达式闪烁的问题 -->
+        <p v-cloak>123{{msg}}456</p>
+        <h4 v-text='msg'> v-text会覆盖内容 不会存在插值与表达式闪烁问题 </h4>
+
+        <div>{{msg1}}</div>
+        <div v-text="msg1"></div>
+        <div v-html="msg1"></div>
+
+
+    </div>
+
+    <script>
+        let app = new Vue({
+            el:'#app',
+            data: {
+                msg:'Vue 初体验',
+                msg1:'<h2> html代码可以被v-html指令渲染 </h2>',
+            }
+        })
+    </script>
+</body>
+
+</html>

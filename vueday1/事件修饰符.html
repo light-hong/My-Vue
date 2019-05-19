@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <style>
+        * {
+            margin: 0%;
+            padding: 0%;
+        }
+
+        .outer {
+            width: 300px;
+            height: 300px;
+            background-color: aqua;
+            margin: 150px auto;
+            position: relative;
+        }
+
+        .inner {
+            width: 150px;
+            height: 150px;
+            background-color: yellow;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -75px;
+            margin-left: -75px;
+            text-align: center;
+        }
+
+        .inner input {
+            margin-top: 70px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- 使用  .stop  阻止冒泡 -->
+        <!-- <div class="outer" @click='outerHandler'>
+            <div class="inner" @click.stop='innerHandler'>
+                <input type="button" value="按钮" @click='btnHandler'>
+            </div>
+        </div> -->
+
+        <!-- 使用  .capture  实现捕获触发的机制 -->
+        <!-- <div class="outer" @click.capture='outerHandler'>
+            <div class="inner" @click='innerHandler'>
+                <input type="button" value="按钮" @click='btnHandler'>
+            </div>
+        </div> -->
+
+        <!-- 使用 .prevent 阻止默认行为 -->
+        <!-- <a href="https://www.baidu.com" @click.prevent='linkHandler'> 跳转垃圾百度</a> -->
+
+        <!-- 使用 .once 只触发一次事件处理函数 -->
+        <!-- <a href="https://www.baidu.com" @click.prevent.once='linkHandler'> 跳转垃圾百度</a> -->
+
+        <!-- .self 只有点击当前元素时候，才会触发事件处理函数 只会阻止自己身上冒泡行为的触发，并不会真正阻止 冒泡的行为 -->
+        <div class="outer" @click='outerHandler'>
+            <div class="inner" @click.self='innerHandler'>
+                <input type="button" value="按钮" @click='btnHandler'>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<script>
+    let app = new Vue({
+        el: '#app',
+
+        methods: {
+            outerHandler() {
+                console.log('这是外层outer的事件')
+            },
+            innerHandler() {
+                console.log('这是内层inner的事件')
+            },
+            btnHandler() {
+                console.log('这是按钮的事件')
+            },
+            linkHandler() {
+                console.log('这是链接的事件')
+            }
+        }
+    })
+</script>
+
+</html>

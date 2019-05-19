@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+        <ul style="list-style: none">
+            <li v-for="(item, index) in items" :key="index">
+                第{{ index + 1 }} {{ item.name }} ===== <a href='' @click.prevent='del(item.id)'>删除</a>
+            </li>
+        </ul>
+    </div>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                items: [{
+                        id: 1,
+                        name: '张三'
+                    },
+                    {
+                        id: 2,
+                        name: '李四'
+                    },
+                    {
+                        id: 3,
+                        name: '刘五'
+                    },
+                    {
+                        id: 4,
+                        name: '赵六'
+                    },
+                    {
+                        id: 5,
+                        name: '田七'
+                    },
+                    {
+                        id: 6,
+                        name: '王八'
+                    },
+                ]
+            },
+            methods: {
+                del(id) {
+                    let index = this.items.findIndex(item => {
+                        if (item.id == id) {
+                            return true
+                        }
+                    })
+                    this.items.splice(index,1)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
