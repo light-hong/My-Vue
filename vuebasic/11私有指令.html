@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" id="inp" v-focus>
+        <h3 v-color="'blue'" v-fontweight="'1500'" v-fontsize="'20'">{{ date | dateFormat() }}</h3>
+    </div>
+
+    <script>
+        Vue.filter('dateFormat', (data, pattern = '') => {
+            let year = data.getFullYear(),
+                month = (data.getMonth() + 1).toString().padStart(2, 0),
+                day = (data.getDate()).toString().padStart(2, 0)
+            if (pattern.toLowerCase() == 'yyyy-mm-dd') {
+                return `${year}-${month}-${day}`
+            } else {
+                let hours = (data.getHours()).toString().padStart(2, 0),
+                    minutes = (data.getMinutes()).toString().padStart(2, 0),
+                    seconds = (data.getSeconds()).toString().padStart(2, 0)
+                return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+            }
+        })
+
+        Vue.directive('focus', {
+            bind: function (el) {},
+            inserted: function (el) {
+                el.focus()
+            },
+            updated: function (el) {
+
+            }
+        })
+
+        Vue.directive('color', {
+            bind: function (el, binding) {
+                el.style.color = binding.value
+            }
+        })
+
+        let app = new Vue({
+            el: '#app',
+            data: {
+                date: new Date()
+            },
+            methods: {
+
+            },
+            //自定义私有指令
+            directives: {
+                'fontweight': {
+                    bind: (el, binding) => {
+                        el.style.fontweight = binding.value
+                    }
+                },
+                'fontsize': function (el, binding) { // 注意：这个 function 等同于 把 代码写到了 bind 和 update 中去
+                    el.style.fontSize = parseInt(binding.value) + 'px'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{ msg | msgFormat('life') }}</p>
+    </div>
+
+    <script>
+        
+        Vue.filter('msgFormat', (data, arg) => data.replace(/人生/g, arg))
+
+        let app = new Vue({
+            el: '#app',
+            data: {
+                msg: '人生若只如初见，何事悲风秋画扇'
+            },
+            methods: {
+
+            },
+            //优先使用私有过滤器
+            filters: {
+                msgFormat:(data, arg) => data.replace(/人生/g, arg)
+            }
+        })
+
+        //String中padStart方法 第一个参数目标长度，第二个参数填充字符串 如果当前字符串没达到目标长度，则在前面加上填充字符串
+        for (let i = 0; i < 15; i++) {
+            console.log(i.toString().padStart(2,0))
+        }
+
+    </script>
+</body>
+</html>

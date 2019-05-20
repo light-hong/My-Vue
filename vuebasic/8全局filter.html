@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- <div id="app">
+        <p>{{ msg | msgFormat('life') }}</p>
+    </div>
+    
+    <script>
+        //过滤器只有插值与表达式和v-bind可以使用
+        //定义全局过滤器  Vue.filter('过滤器名称',callback(data))
+        //回调函数中会把管道符前面使用过滤器的内容作为参数，也可接收单个或多个实参
+        Vue.filter('msgFormat',(data,arg) => data.replace(/人生/g,arg))
+
+        let app = new Vue({
+            el:'#app',
+            data:{
+                msg:'人生若只如初见，何事悲风秋画扇'
+            },
+            methods:{
+
+            },
+
+        }) -->
+
+        <div id="app">
+            <p>{{ msg | msgFormat('what is','life') | test }}</p>
+        </div>
+
+        <script>
+            //过滤器只有插值与表达式和v-bind可以使用
+            //定义全局过滤器  Vue.filter('过滤器名称',callback(data))
+            //回调函数中会把管道符前面使用过滤器的内容作为参数，也可接收单个或多个实参
+            Vue.filter('msgFormat', (data, arg ,arg2) => data.replace(/人生/g, arg+arg2))
+            Vue.filter('test', (data) => data='wow!'+data)
+            let app = new Vue({
+                el: '#app',
+                data: {
+                    msg: '人生若只如初见，何事悲风秋画扇'
+                },
+                methods: {
+
+                },
+
+            })
+    </script>
+</body>
+</html>
