@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <style>
+        * {
+            padding: 0%;
+            margin: 0%;
+        }
+        .circle {
+            width: 100px;
+            height:100px;
+            background-color: yellow;
+            border-radius: 50%;
+        }
+
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(150px)
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.8s ease;
+        }
+
+        .my-enter,
+        .my-leave-to {
+        opacity: 0;
+        transform: translateY(150px)
+        }
+
+        .my-enter-active,
+        .my-leave-active {
+        transition: all 0.8s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="flag=!flag">toggle</button>
+        <transition>
+            <div class="circle" v-if="flag"></div>
+        </transition>
+        <hr>
+        <input type="button" value="修改v-的" @click="flag2=!flag2">
+        <!-- 添加name属性修改前缀 -->
+        <transition name="my">
+            <div class="circle" v-if="flag2"></div>
+        </transition>
+    </div>
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                flag: false,
+                flag2:false,
+            },
+        })
+    </script>
+</body>
+
+</html>
