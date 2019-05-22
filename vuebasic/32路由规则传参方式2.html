@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script src="./node_modules/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 如果在路由中，使用 查询字符串，给路由传递参数，则 不需要修改 路由规则的 path 属性 -->
+        <router-link to="/login/12/tom">登录</router-link>
+        <router-link to="/register">注册</router-link>
+
+        <router-view></router-view>
+    </div>
+    <script>
+        let login = {
+            template: '<h3>登录---{{$route.params.id}}----{{$route.params.name}}</h3>',
+            created() {
+                console.log(this.$route)
+                console.log(this.$route.params)
+            },
+        }
+
+        let register = {
+            template: '<h3>注册</h3>',
+        }
+
+        const router = new VueRouter({
+            routes: [{
+                path: '/login/:id/:name',
+                component: login
+            }, {
+                path: '/register',
+                component: register
+            }]
+        })
+
+        let app = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            router,
+        })
+    </script>
+</body>
+
+</html>
