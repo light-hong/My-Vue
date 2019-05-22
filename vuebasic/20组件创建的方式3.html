@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycom></mycom>
+    </div>
+
+    <template id="temp">
+        <div>
+            <h3>这是通过 template 元素,在外部定义的组件结构,</h3>
+        </div>
+    </template>
+    <script>
+        Vue.component('mycom', {
+            template: '#temp'
+        })
+
+        let app = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

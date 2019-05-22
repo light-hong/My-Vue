@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 父组件向子组件 传递 方法，使用的是 事件绑定机制； v-on, 当我们自定义了 一个 事件属性之后，那么，子组件就能够，通过某些方式，来调用 传递进去的 这个 方法了 -->
+        <com @func='show'></com>
+    </div>
+
+    <template id="temp">
+        <div>
+            <h1>这是 子组件</h1>
+            <input type="button" value="这是子组件中的按钮 - 点击它，触发 父组件传递过来的 func 方法" @click="myclick">
+        </div>
+    </template>
+
+    <script>
+        let com = {
+            template: '#temp',
+            data() {
+                return {
+                    sonmsg: {
+                        name: 'Tom',
+                        age: 9
+                    }
+                }
+            },
+            methods: {
+                myclick() {
+                    // this.$emit()  第一个参数定义的事件属性；第二个参数[第三个参数]传递给父组件方法的参数
+                    this.$emit('func', this.sonmsg)
+                }
+            },
+        }
+
+        let app = new Vue({
+            el: '#app',
+            data: {
+                datafromson: null
+            },
+            methods: {
+                show(data) {
+                    console.log('父组件方法' + data)
+                    this.datafromson = data
+                }
+            },
+            components: {
+                com
+            }
+        })
+    </script>
+</body>
+
+</html>
