@@ -12,6 +12,7 @@
 <body>
     <div id="app">
         <input type="text" id="inp" v-focus>
+        <input type="button" value="this" @click="showthis">
         <h3 v-color="'blue'">{{ date | dateFormat() }}</h3>
     </div>
 
@@ -74,7 +75,7 @@
                 date: new Date()
             },
             methods: {
-
+                showthis:()=>{console.log(this)}
             },
 
         })
