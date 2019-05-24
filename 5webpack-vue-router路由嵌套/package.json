@@ -32,7 +32,7 @@
     "webpack-dev-server": "^3.4.1"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6"
   }
