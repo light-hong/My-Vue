@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+    <label for="inp1">搜索</label><input type="text" name="" id="inp1" v-model="search">
+    <ul>
+        <li v-for="(item, index) in fPersons" :key="index">
+            {{index}}-----{{item.name}}-----{{item.age}}
+        </li>
+    </ul>
+    <button @click='changeOrderType(1)'>年龄升序</button>
+    <button @click='changeOrderType(2)'>年龄降序</button>
+    <button @click='changeOrderType(0)'>原本顺序</button>
+    </div>
+
+    <script src="../../node_modules/vue/dist/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el:'#app',
+            data: {
+                search:'',
+                orderType: 0,   //排序类型 0：不排序，1：升序，2：降序
+                persons: [
+                    {name: 'jack', age: 19},
+                    {name: 'bob', age: 16},
+                    {name: 'mary', age: 24},
+                    {name: 'tom',age: 22},
+                    {name: 'gary',age: 26}
+                ]
+            },
+            methods: {
+                changeOrderType(type){
+                    this.orderType = type
+                }
+            },
+            computed: {
+                fPersons(){
+                    let arr = [...this.persons]
+                    if(this.search.trim()){
+                        arr = arr.filter(item => item.name.indexOf(this.search)!==-1)
+                    }
+                    if(this.orderType){
+                        arr.sort((p1,p2)=>{
+                            if(this.orderType===1){
+                                return p1.age-p2.age
+                            }else{
+                                return p2.age-p1.age
+                            }
+                        })
+                    }
+                    return arr
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
